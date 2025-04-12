@@ -13,9 +13,12 @@ This is a listing of libraries that **MIGHT** be used in any code file but not n
 
 ## Virtual Environments
 
-### Nelson's Env
-*   **Air laptop:** /opt/anaconda3/bin/activate && conda activate /opt/anaconda3/envs/cv-proj1
+Setting up a virtual envirnoment that has the Required libs installed makes it easier to develop and test the application programs. A potential use case would be developing CV apps using different base libraries, such as opencv vs kerras. Instead of  having a single environment that is polluted with all libs, separate environments should be created for each use case, ensuring that the required libs are included with distributions and no unused libs are included.
 
+### Nelson's Env for opencv
+*   **Air laptop:** /opt/anaconda3/bin/activate && conda activate /opt/anaconda3/envs/cv-proj1
+*   **Mac mini:**
+*   **Win desktop:**
 
 ## Goals (in no particular order)
 
