@@ -4,7 +4,7 @@ import pandas as pd  # Pandas for handling YOLO's output data
 import cvzone  # CVZone for easier OpenCV operations
 
 # Load the YOLOv10 model
-model = YOLO("yolov10s.pt")  
+model = YOLO("resources/yolov10s.pt")  
  
 # Function to capture mouse movement events (not used in detection logic)
 def RGB(event, x, y, flags, param):
@@ -16,11 +16,15 @@ def RGB(event, x, y, flags, param):
 cv2.namedWindow('RGB')
 cv2.setMouseCallback('RGB', RGB)
 
-# Open video file for processing
-cap = cv2.VideoCapture(0)
+
+# Open video camera for processing - comment out video file option
+#cap = cv2.VideoCapture(0)
+
+# Open video file for processing - comment out video camera option
+cap = cv2.VideoCapture('resources/fall5.mp4')
 
 # Read COCO class labels (used for object detection classification)
-my_file = open("coco.txt", "r")
+my_file = open("resources/coco.txt", "r")
 data = my_file.read()
 class_list = data.split("\n")
 
@@ -34,13 +38,21 @@ while True:
     # Skip every third frame to improve processing speed
     if count % 3 != 0:
         continue
+    '''Reducing count to 2 makes movements slower but smoother
+        but doesn't seem to improve detection of objects.
+        Increasing count to 8, 15, even 30 makes the movements
+        jerkier but faster (like fast forward. At 30, it still
+        seems to detect all the same objects but it is only detecting
+        once per second. At 60, very jerky and things pop in and
+        then just disappear)'''
     
     # Break if the video has ended
     if not ret:
         break
     
-    # Resize frame for better performance
-    frame = cv2.resize(frame, (1020, 600))
+    # Resize frame for better performance (WxH) # Seems to run OK without resizing
+    #frame = cv2.resize(frame, (1020, 600))
+    #frame = cv2.resize(frame, (210, 150)) #Have to go really small to get much perf increase
 
     # Perform object detection using YOLO
     results = model(frame)

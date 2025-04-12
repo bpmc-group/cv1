@@ -11,10 +11,17 @@ This is a listing of libraries that **MIGHT** be used in any code file but not n
 *   pandas
 *   cvzone
 
+## Virtual Environments
+
+### Nelson's Env
+*   **Air laptop:** /opt/anaconda3/bin/activate && conda activate /opt/anaconda3/envs/cv-proj1
+
+
 ## Goals (in no particular order)
 
 This is NOT a checklist of things to accomplish but just a listing of items that may (or may not) be explored in this project.
 
+*   provide selector program that allows user to pick the features to explore, for example, pose estimation, boundary boxes, and video camera
 *   add limb tracing/skeleton view
 *   add live video capabilities
 *   add multiple videos for testing, experimentaion (what about video of football, rugby, soccer, b-ball? - might not *   apply but should be easy to get)
