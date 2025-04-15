@@ -25,7 +25,7 @@ Setting up a virtual envirnoment that has the Required libs installed makes it e
 
 ### Anaconda Virtual Environments
 
-Anaconda is a wrapper around conda (package management tool) that includes the ability to launch many software tools such as Jupyter Lab/Notebook, PyCharm, Oracle Data Science Service, etc. It includes a "base" virtual environment that can be 'sticky' and show up where you don't expect it, for example, when you open a terminal in VS Code. If that happens, you can exit Anaconda's virtual environment by typing `conda deactivate`.
+Anaconda is a wrapper around conda (package management tool) that includes the ability to launch many software tools such as Jupyter Lab/Notebook, PyCharm, Oracle Data Science Service, etc. It includes a "base" virtual environment that can be 'sticky' and show up where you don't expect it, for example, when you open a terminal in VS Code. If that happens, you can exit Anaconda's (base) environment by typing `conda deactivate`.
 
 ## Goals (in no particular order)
 

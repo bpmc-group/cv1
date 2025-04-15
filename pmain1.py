@@ -7,26 +7,39 @@ import cvzone  # CVZone for easier OpenCV operations
 model = YOLO("resources/yolov10s.pt")  
  
 # Function to capture mouse movement events (not used in detection logic)
+# This capability is not part of the mainline functionality of this program
 def RGB(event, x, y, flags, param):
     if event == cv2.EVENT_MOUSEMOVE:
         point = [x, y]
         print(point) #displays, for example  '[1054, 837]'
 
 # Creating a window for displaying the video
-cv2.namedWindow('RGB')
+cv2.namedWindow('resources/vtest.avi')
 cv2.setMouseCallback('RGB', RGB)
 
 
 # Open video camera for processing - comment out when using video file option
 #cap = cv2.VideoCapture(0)
 
+frame_title = 'resources/fall5.mp4'
 # Open video file for processing - comment out when using video camera option
-cap = cv2.VideoCapture('resources/vtest.avi')
+cap = cv2.VideoCapture(frame_title)
+
+#if cap.isOpened():
+#    print("Error opening video file")
+#    exit()
 
 # Read COCO class labels (used for object detection classification)
 my_file = open("resources/coco.txt", "r")
 data = my_file.read()
 class_list = data.split("\n")
+
+ret, frame = cap.read()
+multiplier = .75
+h, w, ch = frame.shape
+h = round(h * multiplier) 
+w = round(w * multiplier)
+print(f"H: {h} x W:{w}")
 
 count = 0  # Frame counter
 
@@ -57,6 +70,7 @@ while True:
     # Resize frame for better performance (WxH) # Seems to run OK without resizing
     #frame = cv2.resize(frame, (1020, 600))
     #frame = cv2.resize(frame, (210, 150)) 
+    #frame = cv2.resize(frame, (1440,810))
 
     # Perform object detection using YOLO
     results = model(frame)
@@ -85,7 +99,7 @@ while True:
                 cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 2)  # Draw bounding box in green
 
     # Show the processed frame with bounding boxes
-    cv2.imshow("RGB", frame)
+    cv2.imshow(frame_title, frame)
     
     # Exit if 'q' is pressed
     if cv2.waitKey(1) & 0xFF == ord('q'):
