@@ -1,10 +1,20 @@
 import cv2  # OpenCV for image and video processing
 from ultralytics import YOLO  # YOLO model for object detection
+#from ultralytics import settings #didn't show what NEC wanted
 import pandas as pd  # Pandas for handling YOLO's output data
 import cvzone  # CVZone for easier OpenCV operations
+import time
+# also uses resources/coco.txt - list of 80 most common objects to detect
 
 # Load the YOLOv10 model
-model = YOLO("resources/yolov10s.pt")  
+#model = YOLO("resources/yolov10s.pt") #small version - balanced speed & accuracy
+#model = YOLO("trial/yolov10m.pt") #medium version - general purpose
+#model = YOLO("trial/yolov10b.pt") #balanced version - increased width for accur
+model = YOLO("trial/yolov10l.pt") #large version - higher accuracy but increased CPU req
+#model = YOLO("trial/yolov10x.pt") #Extra-large version - maximum accuracy
+# YOLO 11
+#model = YOLO("trial/yolo11s-pose.pt") #only shows people - no pose so far
+#model = YOLO("trial/yolo11m-pose.pt") #only shows people - no pose so far
  
 # Function to capture mouse movement events (not used in detection logic)
 # This capability is not part of the mainline functionality of this program
@@ -16,7 +26,6 @@ def RGB(event, x, y, flags, param):
 # Creating a window for displaying the video
 cv2.namedWindow('resources/vtest.avi')
 cv2.setMouseCallback('RGB', RGB)
-
 
 # Open video camera for processing - comment out when using video file option
 #cap = cv2.VideoCapture(0)
@@ -42,6 +51,7 @@ w = round(w * multiplier)
 print(f"H: {h} x W:{w}")
 
 count = 0  # Frame counter
+start_time = time.time() #measure elapsed time for performance estimation
 
 while True:
     # Read frame from video
@@ -50,7 +60,7 @@ while True:
     
     # Skip every third frame to improve processing speed
     # Every frame is still being read but only a few are processed
-    if count % 3 != 0:
+    if count % 6 != 0:
         continue
     '''Reducing count to 2 makes movements slower but smoother 
         but doesn't seem to improve detection of objects.
@@ -60,20 +70,23 @@ while True:
         once per second. At 60, very jerky and things pop in and
         then just disappear). If this were a production env, the 
         number of frames to skip should be a config value or a
-        param value so could optimize for each viewing device '''
+        param value so could optimize for each device '''
     
     # Break if the video has ended
     if not ret:
-        print(f"Frames Processed In Video: {count}")
+        end_time = time.time()
+        elapsed_time = end_time - start_time
+        print(f"Frames Processed In Video: {count}\nElapsed time: {elapsed_time:.1f} seconds")
         break
     
-    # Resize frame for better performance (WxH) # Seems to run OK without resizing
+    # Don't resize initially - see how it looks. Shrink IF required
     #frame = cv2.resize(frame, (1020, 600))
     #frame = cv2.resize(frame, (210, 150)) 
     #frame = cv2.resize(frame, (1440,810))
+    # IN PRODUCTION ENV: Frame size should be run time param
 
     # Perform object detection using YOLO
-    results = model(frame)
+    results = model(frame)  # pass ", verbose=False" in params to turn off diagnostic info
     a = results[0].boxes.data  # Extract detection results
     px = pd.DataFrame(a).astype("float")  # Convert to Pandas DataFrame
     
@@ -88,7 +101,7 @@ while True:
         h = y2 - y1  # Height of bounding box
         w = x2 - x1  # Width of bounding box
         thresh = h - w  # Threshold to determine if the person is lying down
-       # print(thresh)  # Debugging output
+       # print(thresh)  # Debugging output - should be runtime selectable param
         
         if 'person' in c:
             if thresh < 0:  # If width > height, assume the person has fallen
@@ -103,9 +116,12 @@ while True:
     
     # Exit if 'q' is pressed
     if cv2.waitKey(1) & 0xFF == ord('q'):
-        print(f"Frames Processed Before Break: {count}")
+        end_time = time.time()
+        elapsed_time = end_time - start_time
+        print(f"Frames Processed Before Break: {count}\nElapsed time: {elapsed_time:.1f} seconds")
         break
 
 # Release video resources and close display window
+
 cap.release()
 cv2.destroyAllWindows()

@@ -27,6 +27,23 @@ Setting up a virtual envirnoment that has the Required libs installed makes it e
 
 Anaconda is a wrapper around conda (package management tool) that includes the ability to launch many software tools such as Jupyter Lab/Notebook, PyCharm, Oracle Data Science Service, etc. It includes a "base" virtual environment that can be 'sticky' and show up where you don't expect it, for example, when you open a terminal in VS Code. If that happens, you can exit Anaconda's (base) environment by typing `conda deactivate`.
 
+## Performance Measurements - Mac Mini M4
+
+* 34.3 secs: yolov10s.pt, fall5.mp4, frame skip = 3
+* 17.7 secs: same except frame skip = 6
+* 48.2 secs: yolov10m.pt, fall5.mp4, frame skip = 3
+* 25.2 secs: same except frame skip = 6
+* 60.1 secs: yolov10b.pt, fall5.mp4, frame skip = 3
+* 31.5 secs: same except frame skip = 6
+* 70.5 secs: yolov10l.pt, fall5.mp4, frame skip = 3
+* 36.1 secs: same except frame skip = 6
+* 92.7 secs: yolov10x.pt, fall5.mp4, frame skip = 3
+* 47.5 secs: same except frame skip = 6
+
+**NOTE:** using "results = model(frame, verbose=False)" doesn't seem to improve performance. The cost of reporting which objects were detected and speed, etc, apparently is small.
+
+Haven't found a precise way to measure how many objects were detected and which ones, but it appears that yolov10l is the most consistent detector of objects. 10x seems to detect more tv's but has trouble consistently detecting people, frisbees, etc. which is surprising since the 10x is supposed to be more accurate.
+
 ## Goals (in no particular order)
 
 This is NOT a checklist of things to accomplish but just a listing of items that may (or may not) be explored in this project.
