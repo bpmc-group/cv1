@@ -46,12 +46,12 @@ Anaconda is a wrapper around conda (package management tool) that includes the a
 * 30.8 secs: same except frame skip = 6
 * 88.8 secs: yolov10m.pt, fall5.mp4, frame skip = 3
 * 49.0 secs: same except frame skip = 6
-*  secs: yolov10b.pt, fall5.mp4, frame skip = 3
-* 31.5 secs: same except frame skip = 6
+* 121.9 secs: yolov10b.pt, fall5.mp4, frame skip = 3
+* 62.8 secs: same except frame skip = 6
 * 143.4 secs: yolov10l.pt, fall5.mp4, frame skip = 3
-* 36.1 secs: same except frame skip = 6
-* 92.7 secs: yolov10x.pt, fall5.mp4, frame skip = 3
-* 47.5 secs: same except frame skip = 6
+* 74.8 secs: same except frame skip = 6
+* 186.4 secs: yolov10x.pt, fall5.mp4, frame skip = 3
+* 100.6 secs: same except frame skip = 6
 
 **NOTE:** using "results = model(frame, verbose=False)" doesn't seem to improve performance. The cost of reporting which objects were detected and speed, etc, apparently is small.
 
