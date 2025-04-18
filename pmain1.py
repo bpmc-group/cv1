@@ -30,6 +30,8 @@ cv2.setMouseCallback('mouseWindow', RGB)
 # Open video camera for processing - comment out when using video file option
 #cap = cv2.VideoCapture(0)
 
+#frame_title = 'resources/vtest.avi'
+#frame_title = 'resources/Megamind.avi'
 frame_title = 'resources/fall5.mp4'
 # Open video file for processing - comment out when using video camera option
 cap = cv2.VideoCapture(frame_title)
@@ -72,7 +74,7 @@ while True:
     
     # Don't resize initially - see how it looks. Shrink IF required. Smaller may NOT speed up processing
     #frame = cv2.resize(frame, (640, 384)) # actually ran slower
-    #frame = cv2.resize(frame, (1280, 768)) 
+    #frame = cv2.resize(frame, (1280, 960)) # double-size for vtest.avi
     #frame = cv2.resize(frame, (1440,810))
     # IN PRODUCTION ENV: Frame size should be run time param
 
@@ -92,6 +94,9 @@ while True:
             h_fall = y2 - y1  # Height of bounding box
             w_fall = x2 - x1  # Width of bounding box
             thresh = h_fall - w_fall  # Threshold to determine if the person is lying down
+            #This only works if person lying down in y-dimension (left to right). If person
+            # is lying down in x-dimension (perpendicular to bottom of screen). ALSO, if 
+            # person is NOT moving around, the object detector stops detecting the person
             if thresh < 0:  # If width > height, assume the person has fallen
                 cvzone.putTextRect(frame, 'person_fall', (x1, y1), 1, 1)  # Display fall warning
                 cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 0, 255), 2)  # Draw bounding box in red for fall
@@ -99,9 +104,9 @@ while True:
             else:
                 cvzone.putTextRect(frame, f'{c}', (x1, y1), 1, 1)  # Display class label
                 cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 2)  # Draw bounding box (green for standing person)
-        #else: # make this a run time parameter - if NOT a person, skip #NOTE doesn't save much time but easier to watch
-            #cvzone.putTextRect(frame, f'{c}', (x1, y1), 1, 1)  # Display class label
-            #cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 2)  # Draw bounding box in green       
+        else: # make this a run time parameter - if NOT a person, skip #NOTE doesn't save much time but easier to watch
+            cvzone.putTextRect(frame, f'{c}', (x1, y1), 1, 1)  # Display class label
+            cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 2)  # Draw bounding box in green       
 
     # Show the processed frame with bounding boxes
     cv2.imshow(frame_title, frame)
