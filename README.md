@@ -40,6 +40,19 @@ Anaconda is a wrapper around conda (package management tool) that includes the a
 * 92.7 secs: yolov10x.pt, fall5.mp4, frame skip = 3
 * 47.5 secs: same except frame skip = 6
 
+## Performance Measurements - Win11 - 4 yr old system
+
+* 52.4 secs: yolov10s.pt, fall5.mp4, frame skip = 3
+* 30.8 secs: same except frame skip = 6
+* 88.8 secs: yolov10m.pt, fall5.mp4, frame skip = 3
+* 49.0 secs: same except frame skip = 6
+*  secs: yolov10b.pt, fall5.mp4, frame skip = 3
+* 31.5 secs: same except frame skip = 6
+* 143.4 secs: yolov10l.pt, fall5.mp4, frame skip = 3
+* 36.1 secs: same except frame skip = 6
+* 92.7 secs: yolov10x.pt, fall5.mp4, frame skip = 3
+* 47.5 secs: same except frame skip = 6
+
 **NOTE:** using "results = model(frame, verbose=False)" doesn't seem to improve performance. The cost of reporting which objects were detected and speed, etc, apparently is small.
 
 Haven't found a precise way to measure how many objects were detected and which ones, but it appears that yolov10l is the most consistent detector of objects. 10x seems to detect more tv's but has trouble consistently detecting people, frisbees, etc. which is surprising since the 10x is supposed to be more accurate.
