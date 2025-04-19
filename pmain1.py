@@ -31,9 +31,10 @@ cv2.setMouseCallback('mouseWindow', RGB)
 #cap = cv2.VideoCapture(0)
 #frame_title = "Camera"
 
-frame_title = 'resources/vtest.avi'
+#frame_title = 'resources/vtest.avi'
 #frame_title = 'resources/Megamind.avi'
-#frame_title = 'resources/fall5.mp4'
+frame_title = 'resources/fall5.mp4'
+#frame_title = 'resources/fall5gray.mp4'
 # Open video file for processing - comment out when using video camera option
 cap = cv2.VideoCapture(frame_title)
 
@@ -54,7 +55,7 @@ while True:
     
     # Skip every third frame to improve processing speed
     # Every frame is still being read but only a few are processed
-    if count % 24 != 0:
+    if count % 6 != 0:
         continue
     '''Reducing count to 2 makes movements slower but smoother 
         but doesn't seem to improve detection of objects.
