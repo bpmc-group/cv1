@@ -7,14 +7,14 @@ import time
 # also uses resources/coco.txt - list of 80 most common objects to detect
 
 # Load the YOLOv10 model
-model = YOLO("resources/yolov10s.pt") #small version - balanced speed & accuracy
-#model = YOLO("trial/yolov10m.pt") #medium version - general purpose
-#model = YOLO("trial/yolov10b.pt") #balanced version - increased width for accur
-#model = YOLO("trial/yolov10l.pt") #large version - higher accuracy but increased CPU req
-#model = YOLO("trial/yolov10x.pt") #Extra-large version - maximum accuracy
+#model = YOLO("resources/model/yolov10s.pt") #small version - balanced speed & accuracy
+#model = YOLO("resources/model/yolov10m.pt") #medium version - general purpose
+#model = YOLO("resources/model/yolov10b.pt") #balanced version - increased width for accur
+model = YOLO("resources/model/yolov10l.pt") #large version - higher accuracy but increased CPU req
+#model = YOLO("resources/model/yolov10x.pt") #Extra-large version - maximum accuracy
 # YOLO 11
-#model = YOLO("trial/yolo11s-pose.pt") #only shows people - no pose so far
-#model = YOLO("trial/yolo11m-pose.pt") #only shows people - no pose so far
+#model = YOLO("resources/model/yolo11s-pose.pt") #only shows people - no pose so far
+#model = YOLO("resources/model/yolo11m-pose.pt") #only shows people - no pose so far
  
 # Function to capture mouse movement events (not used in detection logic)
 # This capability is not part of the mainline functionality of this program
@@ -31,10 +31,10 @@ cv2.setMouseCallback('mouseWindow', RGB)
 #cap = cv2.VideoCapture(0)
 #frame_title = "Camera"
 
-#frame_title = 'resources/vtest.avi'
-#frame_title = 'resources/Megamind.avi'
-frame_title = 'resources/fall5.mp4'
-#frame_title = 'resources/fall5gray.mp4'
+#frame_title = 'resources/video/vtest.avi'
+#frame_title = 'resources/video/Megamind.avi'
+frame_title = 'resources/video/fall5.mp4'
+#frame_title = 'resources/video/fall5gray.mp4'
 # Open video file for processing - comment out when using video camera option
 cap = cv2.VideoCapture(frame_title)
 
@@ -55,7 +55,7 @@ while True:
     
     # Skip every third frame to improve processing speed
     # Every frame is still being read but only a few are processed
-    if count % 6 != 0:
+    if count % 2 != 0:
         continue
     '''Reducing count to 2 makes movements slower but smoother 
         but doesn't seem to improve detection of objects.
