@@ -5,7 +5,7 @@ __pycache__/
 
 # cv1 project models to ignore since they are big
 #   and easily downloaded from ultralytics
-resources/model/
+resources/model/*
 
 # C extensions
 *.so

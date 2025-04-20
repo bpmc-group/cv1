@@ -9,10 +9,9 @@ import time
 # Load the YOLOv11 model
 #model = YOLO("resources/model/yolo11n.pt") #nano version - speed 
 #model = YOLO("resources/model/yolo11s.pt") #small version - balanced speed & accuracy
-#model = YOLO("resources/model/yolo11m.pt") #medium version - general purpose
+model = YOLO("resources/model/yolo11m.pt") #medium version - general purpose
 #model = YOLO("resources/model/yolo11l.pt") #large version - higher accuracy but increased CPU req
-
-model = YOLO("resources/model/yolo11x.pt") #Extra-large version - maximum accuracy
+#model = YOLO("resources/model/yolo11x.pt") #Extra-large version - maximum accuracy
  
 # Function to capture mouse movement events (not used in detection logic)
 # This capability is not part of the mainline functionality of this program
