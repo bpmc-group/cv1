@@ -1,0 +1,50 @@
+= Performance Tables
+
+This doc is AsciiDoc formatted because it includes *by default* formatting for tables instead of relying on external, potentially conflicting, tools. If you are familiar with MarkDown, you should have no problem with AsciiDoc.  
+
+The following data were collected on 4/20/25 using systems available to Nelson
+
+== Object Detection
+
+.A Mac Mini M4 Results
+[%autowidth]
+|======
+| Time(secs)| Model | Video | Frames Skipped
+| 26.8 | yolo11.pt | fall5.mp4 | 3 
+| 14.9 | " | " | 6 
+| 45.5 | yolov11m.pt | fall5.mp4 | 3
+| 25.1 | " | " | 6
+| 59.8 | yolo11l.pt | fall5.mp4 | 3
+| 29.1 | " | " | 6
+| 87.6 | yolo11x.pt | fall5.mp4 | 3
+| 45.3 | " | " | 6
+|======
+
+.A Macbook Air M2 Results
+[%autowidth]
+|======
+| Time(secs)| Model | Video | Frames Skipped
+| 0.0 | yolo11.pt | fall5.mp4 | 3 
+| 0.0 | " | " | 6 
+| 0.0 | yolov11m.pt | fall5.mp4 | 3
+| 0.0 | " | " | 6
+| 0.0 | yolo11l.pt | fall5.mp4 | 3
+| 0.0 | " | " | 6
+| 0.0 | yolo11x.pt | fall5.mp4 | 3
+| 0.0| " | " | 6
+|======
+
+.A Win11 4 years old Results
+[%autowidth]
+|======
+| Time(secs)| Model | Video | Frames Skipped
+| 0.0 | yolo11.pt | fall5.mp4 | 3 
+| 0.0 | " | " | 6 
+| 0.0 | yolov11m.pt | fall5.mp4 | 3
+| 0.0 | " | " | 6
+| 0.0 | yolo11l.pt | fall5.mp4 | 3
+| 0.0 | " | " | 6
+| 0.0 | yolo11x.pt | fall5.mp4 | 3
+| 0.0| " | " | 6
+|======
+

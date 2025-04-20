@@ -1,0 +1,55 @@
+= cv1 Project using Yolo
+
+This project explores computer vision with Python3, OpenCV and other libraries. Separate projects will repeat much of the experiments performed in this project.
+
+== Required libs
+
+This is a listing of libraries that **MIGHT** be used in any code file but not necessarily every lib will be used in every code file. These will probably end up in a file name requirements.txt that can be generated using the `pip freeze` (show which libraries are currently loaded).
+
+* opencv
+* ultralytics (yolo v11)
+* pandas
+* cvzone
+
+== Performance Tables
+
+The performance of various combinations of hardware and models on specific files is documented in a separate file name "performance_tables.adoc" is available in this repository. Refer to that document for the results of various configurations performing different tasks (object detection, image segmentation, pose estimation, etc).
+
+== Virtual Environments
+
+Setting up a virtual environment that has the Required libs installed makes it easier to develop and test the application programs. A potential use case would be developing CV apps using different base libraries, such as opencv vs keros. Instead of  having a single environment that is polluted with all libs, separate environments should be created for each use case, ensuring that the required libs are included with distributions and no unnecessary libs are included.
+
+NOTE: Exiting a virtual environment is usually done by typing `deactivate` at the terminal prompt. If you are switching between virtual environments, it is probably prudent to deactive the current environment before activating the next env.
+
+=== Nelson's Env for opencv - all use Anaconda
+
+* **Air laptop:** /opt/anaconda3/bin/activate && conda activate /opt/anaconda3/envs/cv-proj1
+* **Mac mini:** `conda activate cv1`
+* **Win desktop:** `conda activate cv1` 
+
+=== Anaconda Virtual Environments
+
+Anaconda is a wrapper around conda (package management tool) that includes the ability to launch many software tools such as Jupyter Lab/Notebook, PyCharm, Oracle Data Science Service, etc. It includes a "base" virtual environment that can be 'sticky' and show up where you don't expect it, for example, when you open a terminal in VS Code. If that happens, you can exit Anaconda's (base) environment by typing `conda deactivate`.
+
+NOTE: Changing "results = model(frame, verbose=False)" to remove diagnostics (frame-by-frame listing of screen size & objects found & speed info) doesn't seem to improve performance. The cost of reporting which objects were detected and speed, etc, apparently is small.
+
+NOTE: Running pmain1.py and reading video file from an SSD doesn't improve performance. The app maxes out the CPU each time it processes a frame so having a faster file system to read the video file doesn't help.
+
+Haven't found a way to produce a report of the objects detected on a video other than watching the diagnostic info as it scrolls by frame by frame. It would be ideal if a report would be generated after each video run so we would have totals about the objects detected and therefore a better tool for deciding which combination of options produced the optimal results.
+
+== Goals (in no particular order)
+
+This is NOT a checklist of things to accomplish but just a listing of items that may (or may not) be explored in this project.
+
+* provide selector program that allows user to pick the features to explore, for example, pose estimation, boundary boxes, and video camera
+* add pose estimation/limb tracing/skeleton view
+* add multiple videos for testing, experimentaion (what about video of football, rugby, soccer, b-ball? - might not apply but should be easy to get)
+* add interfacing with SMS messaging
+* add interfacing with email
+* add interfacing with other devices (alert/alarm systems unknown at this time)
+* add audio notification
+* checkbox list of notification choices
+* web interface
+* single room video feed- detect objects in room
+* single room video feed - motion detection or image changing detection
+* single room video feed- identify people in room - introduce visitors to CV system?
