@@ -3,6 +3,10 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# cv1 project models to ignore since they are big
+#   and easily downloaded from ultralytics
+resources/model/
+
 # C extensions
 *.so
 
