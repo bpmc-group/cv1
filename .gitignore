@@ -3,8 +3,9 @@ __pycache__/
 *.py[cod]
 *$py.class
 
-# cv1 project models to ignore since they are big
-#   and easily downloaded from ultralytics
+# cv1 Yolo models should be ignored since they are big
+#   and easily downloaded from ultralytics. Skip the
+#   runs/ folder as it is generated dynamically by Yolo
 resources/model/*
 runs/
 
