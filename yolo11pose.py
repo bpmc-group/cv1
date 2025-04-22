@@ -7,6 +7,6 @@ being annotated and can be stopped at any point to review the results at that in
 '''
 from ultralytics import YOLO
 
-model = YOLO('/Users/nelsonchamberlain/Documents/GitHub/cv1/resources/model/yolo11s-pose.pt')
+model = YOLO('resources/model/yolo11s-pose.pt')
 
 results = model(source='resources/video/fall5.mp4', show=True, conf=0.4, save=True)
