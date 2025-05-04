@@ -7,6 +7,7 @@ __pycache__/
 #   and easily downloaded from ultralytics. Skip the
 #   runs/ folder as it is generated dynamically by Yolo
 resources/model/*
+resources/unarchived/*
 runs/
 
 # C extensions
