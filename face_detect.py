@@ -38,7 +38,7 @@ if not os.path.exists(asset_zip_path):
 # ====================================================================
 
 
-s = 0
+s = 1
 if len(sys.argv) > 1:
     s = sys.argv[1]
 
