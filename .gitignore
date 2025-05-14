@@ -9,6 +9,7 @@ __pycache__/
 resources/model/*
 resources/unarchived/*
 runs/
+env/
 
 # C extensions
 *.so
