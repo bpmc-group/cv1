@@ -1,3 +1,8 @@
+''' !!! WARNING !!!
+The OFFICIAL version of this file was COPIED to bpmc-group/cv-yolo for updates
+ and maintenance. DO NO UPDATE THIS VERSION OF THIS FILE - its changes won't be used
+!!! END WARNING !!! '''
+
 ''' From Ultralytics video about Object Detection
 The speaker said using it was really simple, just a 3 line program so I had to try it.
 Each time that it is run, it adds a numbered "predict" to the runs/detect/ folder where 
